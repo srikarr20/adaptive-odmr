@@ -1,0 +1,74 @@
+benchmark_id: experiment11
+status: frozen_before_execution
+frozen_date: 2026-09-25
+
+purpose: >
+  Compare reduced-setting strategies on one independent recorded experimental
+  ODMR trace without changing the benchmark rules after observing results.
+
+dataset:
+  expected_rows: 297
+  frequency_column: "Adjusted Frequency [MHz]"
+  value_column: "Normalized Counts"
+  note: >
+    The raw third-party dataset is not committed to this repository. The runner
+    accepts a local CSV path.
+
+references:
+  discrete_grid_minimum_mhz: 2869.000000
+  full_trace_primary_fit_mhz: 2869.729971034267
+  secondary_full_trace_fit_mhz: 2861.3991244617073
+  full_trace_reference_model: M2S
+  rule: >
+    Report errors against BOTH the discrete observed minimum and the frozen
+    continuous full-trace primary fit. Do not change these references after run.
+
+budgets: [20, 30, 40, 50, 60, 80]
+
+strategies:
+  - uniform_fixed
+  - random
+  - aqie_single_model
+  - discovery_model_aware
+
+random:
+  seed: 20260925
+  repetitions: 100
+
+uniform_fixed:
+  rule: evenly_spaced_indices_over_full_recorded_grid
+
+aqie_single_model:
+  model: M1
+  discovery_points: 15
+  localization_points: 0
+  periodic_global_exploration: 0
+
+discovery_model_aware:
+  discovery_points: 15
+  localization_points: 6
+  model_bank: [M1, M1S, M2, M2S]
+  selection_criterion: AICc
+  periodic_global_exploration_every_adaptive_steps: 6
+
+metrics:
+  - absolute_error_vs_discrete_minimum_khz
+  - absolute_error_vs_full_trace_primary_fit_khz
+  - median_error_khz
+  - interquartile_range_khz
+  - p90_error_khz
+  - catastrophic_lock_on_rate
+
+catastrophic_lock_on:
+  definition: absolute_error_vs_full_trace_primary_fit_mhz_greater_than_10
+  threshold_mhz: 10.0
+
+reporting:
+  report_all_budgets: true
+  report_failures: true
+  report_random_distribution: true
+  no_posthoc_rule_changes: true
+
+evidence_boundary: >
+  This is recorded-data replay. It is not live adaptive sensing and cannot
+  establish wall-clock acquisition-time savings.
