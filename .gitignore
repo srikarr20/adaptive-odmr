@@ -1,0 +1,16 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# External/raw experimental data
+data/
+*.rar
+*.zip
+
+# Generated caches/state
+*.npz
+
+# Local generated figures
+results/*.png
