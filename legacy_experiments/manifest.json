@@ -1,0 +1,62 @@
+{
+  "project": "Adaptive ODMR",
+  "provenance": "Historical manifest for Experiments 01–10. It records the executed evidence chain; it does not claim that reconstructed source is original source.",
+  "experiments": [
+    {
+      "id": "01",
+      "evidence": "simulation",
+      "result": "128-point synthetic baseline; one retained run recovered the hidden 2870 MHz resonance with ~37.2 kHz error."
+    },
+    {
+      "id": "02",
+      "evidence": "simulation/repeated trials",
+      "result": "At N=15, session medians were ~88.8 kHz Fixed, ~121.7 kHz Random, ~24.9 kHz AQIE."
+    },
+    {
+      "id": "03",
+      "evidence": "simulation",
+      "result": "Strong structured model mismatch degraded AQIE and exposed model dependence."
+    },
+    {
+      "id": "04",
+      "evidence": "simulation",
+      "result": "Residual adequacy gate intercepted strong mismatch as WARN/STOP in the executed trial set."
+    },
+    {
+      "id": "05",
+      "evidence": "simulation",
+      "result": "At N=20, strong-mismatch median error changed from ~484.8 kHz AQIE to ~294.4 kHz twin-governed AQIE."
+    },
+    {
+      "id": "06",
+      "evidence": "simulation",
+      "result": "At N=30, strong-mismatch median error changed from ~459.3 kHz to ~92.8 kHz with hierarchical escalation."
+    },
+    {
+      "id": "07",
+      "evidence": "independent recorded experimental ODMR replay",
+      "result": "Naive sparse AQIE locked onto the wrong region (~148 MHz error), motivating discovery before exploitation."
+    },
+    {
+      "id": "08",
+      "evidence": "independent recorded experimental ODMR replay",
+      "result": "Discovery removed catastrophic lock-on; single-model inference became inadequate as additional structure was exposed."
+    },
+    {
+      "id": "09",
+      "evidence": "independent recorded experimental ODMR replay",
+      "result": "Reduced-data model selection chose a two-resonance family and progressively converged."
+    },
+    {
+      "id": "10",
+      "evidence": "full recorded trace used for evaluation reference",
+      "result": "M2S preferred among tested models; fitted centers ~2861.399 and ~2869.730 MHz. Adaptive error vs primary full-fit center reached ~32.6 kHz at N=60 and ~11.7 kHz at N=80."
+    }
+  ],
+  "boundaries": {
+    "live_hardware_validation": false,
+    "wall_clock_savings_demonstrated": false,
+    "superiority_over_fixed_random_on_independent_data": false,
+    "independent_replication": false
+  }
+}
